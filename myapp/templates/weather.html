@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block content%}
+    <ul>
+        <li><img src="{{form.icon}}"/>  </li>
+        <li>Location: <h1>{{form.name}}</h1> </li>
+        <li>Temperature: {{form.temperature}}°C</li>
+        <li>Description: {{form.description}}</li>
+        <li>Wind Speed: {{form.wind_speed}} km/h</li>
+        <li>Humidity: {{form.humidity}}%</li>
+        <li>Cloud Cover: {{form.cloud_cover}}%</li>
+        <li>Feels like: {{form.feelslike}}°C</li>  
+        <li>Visibility: {{form.visibility}}%</li> 
+    </ul>
+{%endblock content%}
