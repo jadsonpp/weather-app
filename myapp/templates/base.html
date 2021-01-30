@@ -9,23 +9,47 @@
         <!-- add icon link -->
         <link rel = "icon" href ="https://www.google.de/url?sa=i&url=https%3A%2F%2Ficonscout.com%2Ficon%2Fweather-192&psig=AOvVaw31D6Ktn3GnYkAjl00A-N9O&ust=1612015240955000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLijpPKmwe4CFQAAAAAdAAAAABAI" 
         type = "image/x-icon">
+
+        <!-- AWESOME FONT FREE -->
+        <link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
     </head>
-    <body>
-        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-            <a class="navbar-brand"> <img src="https://www.google.de/url?sa=i&url=https%3A%2F%2Fwww.pinterest.es%2Fpin%2F768286017674765768%2F&psig=AOvVaw31D6Ktn3GnYkAjl00A-N9O&ust=1612015240955000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLijpPKmwe4CFQAAAAAdAAAAABAO"></a>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
-        </nav>
+
+
+
+    <body style="background-color:rgb(100, 198, 237)">
+        {% load static %}
+
+        <nav class="navbar navbar-light bg-light justify-content-between"  >
+            
+            <i class="fas fa-cloud-sun-rain fa-5x"   style="margin-left: 10px;"></i>
+            
+            <h1>
+                <a class="navbar-brand">Weather App</a>
+            </h1>
+
+            <form class="form-inline" style="margin-right:10px;" method="POST" action="{% url 'search' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1" >
+                        <i class="fas fa-snowflake fa-2x"></i>
+                    </span>
+                  </div>
+                  <input type="text" name="City" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon1">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </div>
+              </form>
+        </nav>     
                 
         
 
-        <main class="container" style="text-align: center; background-color:cornflowerblue" >
+        <main class="container" style="text-align: center;" >
             {% block content%}
 
             {%endblock content%}          
         </main>
         
     </body>
-</html>
+</html> 
