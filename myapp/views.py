@@ -19,17 +19,21 @@ def home(request):
     
 
 def search(request):
-    cityName = ""
-    if request.method == 'POST':
-        form = CityForm(request.POST)
+    
+    if request.method=="POST":
 
-        if form.is_valid():
-            cityName = form.cleaned_data['name']
+        cityName = request.POST['City']
+        params['query'] = cityName
+    
+        api_result = requests.get('http://api.weatherstack.com/current', params)
+        api_response = api_result.json()
+        
+        if ('error' in api_response):
+            msg = "Error, Place data not found."
+            return render(request,'error.html', {'form': msg})
 
-            params['query'] = cityName
-
-            api_result = requests.get('http://api.weatherstack.com/current', params)
-            api_response = api_result.json()
-            weather = weatherInfos(api_response)
-
-    return render(request,'weather.html',{'form': weather})
+        weather = weatherInfos(api_response)
+    
+        return render(request,'weather.html',{'form': weather})
+    
+    return render(request,'base.html')

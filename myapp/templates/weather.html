@@ -1,15 +1,99 @@
 {% extends 'base.html' %}
 
 {%block content%}
-    <ul>
-        <li><img src="{{form.icon}}"/>  </li>
-        <li>Location: <h1>{{form.name}}</h1> </li>
-        <li>Temperature: {{form.temperature}}°C</li>
-        <li>Description: {{form.description}}</li>
-        <li>Wind Speed: {{form.wind_speed}} km/h</li>
-        <li>Humidity: {{form.humidity}}%</li>
-        <li>Cloud Cover: {{form.cloud_cover}}%</li>
-        <li>Feels like: {{form.feelslike}}°C</li>  
-        <li>Visibility: {{form.visibility}}%</li> 
-    </ul>
+
+    <div class="container" style="font-size: 25px; margin-top: 10px;">
+       
+        <div class="row justify-content-md-center" style="margin-top: 10px;">
+            <div class="col col-sm-1">
+                <i class="fas fa-map-pin fa-2x"> </i> 
+            </div>
+            
+            <div class="col-md-auto">
+                <h1>{{form.name}}</h1>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col">
+                    <div>
+                        {% if form.temperature > 23 %}
+                            <i class="fas fa-temperature-high fa-2x"></i>
+                        
+                        {% else %}
+                            <i class="fas fa-temperature-low fa-2x"></i>
+                        {% endif %}
+                    </div>
+                    
+                    {{form.temperature}}°C
+                </div>
+
+                <div class="col">
+                    <div>
+                        <i class="fas fa-sticky-note fa-2x"></i>
+                    </div>
+                    
+                    <div>
+                        {{form.description}}
+                    </div>
+                </div>
+               
+                <div class="col">
+                    <div>   
+                        <i class="fas fa-wind fa-2x"></i>
+                    </div>
+                    
+                    <div>
+                        {{form.wind_speed}} km/h
+                    </div>
+                </div>
+            </div>    
+            
+            <div class="row" style="margin-top: 10px;">
+                <div class="col">
+                    <div>
+                        <i class="fas fa-cloud-sun fa-2x"> </i>
+                    </div>
+                    <div>
+                        {{form.cloud_cover}} %
+                    </div>
+                    
+                </div>
+
+                <div class="col">
+                    <div>
+                        <i class="fas fa-tint fa-2x"></i>    
+                    </div>
+                
+                    
+                       {{form.humidity}}%
+                    
+                </div>
+
+
+                <div class="col">
+                    <div>
+                        <i class="fas fa-sun fa-2x"></i>
+                    </div>
+                    <div>
+                        {{form.feelslike}}°C
+                    </div>
+                </div>
+            </div>  
+
+            
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col">
+                    <div>
+                        <i class="fas fa-eye-slash fa-2x"></i>
+                    </div>
+                    <div>
+                        {{form.visibility}} %
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    
 {%endblock content%}
