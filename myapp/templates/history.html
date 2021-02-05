@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+    {% if searches %}
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Location</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Temperature</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                {% for search in searches %}
+                    <tr>
+                        <th scope="row">{{ search.location }}</th>
+                        <td>{{ search.date }}</td>
+                        <td>{{ search.search_time }}</td>
+                        <td>{{ search.temperature }}</td>
+                        <td>{{ search.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{%endblock content%}
