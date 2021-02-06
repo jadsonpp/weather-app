@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
+from django.db.models import Count
 import requests
 from .extras import weatherInfos
 from .models import Search
@@ -44,9 +46,19 @@ def search(request):
 
 
 def search_history(request):
-    searches = Search.objects.all()
+    search_list = Search.objects.all()
     
-    for obj in searches:
-        obj.showData()
-        
-    return render(request, 'history.html', {'searches': searches} )
+    paginator = Paginator(search_list,10)
+
+    page = request.GET.get('page')
+
+    search = paginator.get_page(page)
+
+    #Group by Location
+    s = Search.objects.values('location').annotate(dcount=Count('location'))
+    
+    for searchs in s:
+        print(f"Location: {searchs['location']} Ocorrências: {searchs['dcount']}")
+    
+
+    return render(request, 'history.html', {'searches': search  } )

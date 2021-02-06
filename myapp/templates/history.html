@@ -26,6 +26,26 @@
                     </tr>
                 {% endfor %}
             </tbody>
-        </table>
-    {% endif %}
+        </table>   
+        
+        <div class= "paginator" style = "margin-bottom: 20px;">
+            <span style= "position: relative; margin-left:auto ; margin-right: auto;">
+                {% if searches.has_previous %}
+                    <a href="?page={{ searches.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+                {% endif %}
+                    
+                <span  style="margin-left: 5px ; margin-right: 5px">
+                    {{searches.number}} de {{searches.paginator.num_pages}}
+                </span>
+
+                {% if searches.has_next %}
+                    <a href="?page={{ searches.next_page_number }}">
+                        <i class="fas fa-arrow-right"> </i>    
+                    </a>
+                {% endif %}
+            </span>
+        </div>
+
+    {% endif%}
+
 {%endblock content%}
