@@ -6,6 +6,7 @@ from .extras import weatherInfos
 from .models import Search
 from .forms import CityForm
 
+#GLOBAL VARIABLES
 params = {
         'access_key': 'eeb513546914bd969adf810889f895a9',
         'query': 'vitoria',
@@ -46,19 +47,13 @@ def search(request):
 
 
 def search_history(request):
+    #Take all search objects
     search_list = Search.objects.all()
-    
+    #Make a paginator object with 10 objs per page.
     paginator = Paginator(search_list,10)
-
+    #take the current page
     page = request.GET.get('page')
-
     search = paginator.get_page(page)
 
-    #Group by Location
-    s = Search.objects.values('location').annotate(dcount=Count('location'))
-    
-    for searchs in s:
-        print(f"Location: {searchs['location']} Ocorrências: {searchs['dcount']}")
-    
-
     return render(request, 'history.html', {'searches': search  } )
+

@@ -1,56 +1,56 @@
 <!doctype html>
-{% load static%}
+
+
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css'%}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <title>Weather App</title>
-        <!-- add icon link -->
-        <link rel = "icon" href ="{% static 'assets/img/snow-flake.SVG' %}" alt="My image" 
-        type = "image/x-icon">
-
-        <!-- AWESOME FONT FREE -->
-        <link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
-    </head>
+  <head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css'%}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    <!-- AWESOME FONT FREE -->
+    <link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
+  </head>
 
 
 
-    <body style="background-color:rgb(100, 198, 237)">
-        {% load static %}
+  <body>
 
-        <nav class="navbar navbar-light bg-light justify-content-between"  >
+    <nav class="navbar navbar-light  justify-content-between" id="Navegation" >
+      <i class="fas fa-cloud-sun-rain fa-5x"></i>
 
-            <i class="fas fa-cloud-sun-rain fa-5x"   style="margin-left: 10px;"></i>
-            
-            <h1>
-                <a class="navbar-brand">Weather App</a>
-            </h1>
-           
+      <h2> Weather App</h2>
 
-            <form class="form-inline" style="margin-right:10px;" method="POST" action="{% url 'search' %}">
-                {% csrf_token %}
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1" >
-                        <i class="fas fa-snowflake fa-2x"></i>
-                    </span>
-                  </div>
-                  <input type="text" name="City" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon1">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </div>
-              </form>
-        </nav>     
-                
+      <form class="form-inline"  method="POST" action="{% url 'search' %}">
         
+        {% csrf_token %}
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1" >
+              <i class="fas fa-snowflake fa-2x"></i>
+            </span>
+          </div>
 
-        <main class="container" style="text-align: center; margin-top:20px;" >
-            {% block content%}
+          <input type="text" name="City" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon1">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>
+      </form>
+    </nav>     
 
-            {%endblock content%}          
-        </main>
-        
-    </body>
+    <div id="Navegation">
+      {% block home %}<a class="active" href="{% url 'index' %}">Home</a> {% endblock %}
+      {% block history %}<a href="{% url 'search_history' %}">Searchs</a> {% endblock %}
+    </div>
+
+
+  <div class="container Main" >
+    {% block content%}
+
+    {%endblock content%}          
+  </div>
+
+  </body>
 </html> 

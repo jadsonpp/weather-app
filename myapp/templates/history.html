@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 
+{% block home %}
+    <a href="{% url 'index' %}">Home</a> 
+{% endblock %}
+
+{% block history %}
+    <a  class="active" href="{% url 'search_history' %}">Searchs</a>
+{% endblock %}
+
+
+
 {%block content%}
 
     {% if searches %}
 
-        <table class="table">
+        <table class="table" id="Table">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Location</th>
@@ -28,13 +38,15 @@
             </tbody>
         </table>   
         
-        <div class= "paginator" style = "margin-bottom: 20px;">
-            <span style= "position: relative; margin-left:auto ; margin-right: auto;">
+        <div class= "Paginator">
+            <span id = "previous">
                 {% if searches.has_previous %}
-                    <a href="?page={{ searches.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+                    <a href="?page={{ searches.previous_page_number }}">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
                 {% endif %}
                     
-                <span  style="margin-left: 5px ; margin-right: 5px">
+                <span  id="pages">
                     {{searches.number}} de {{searches.paginator.num_pages}}
                 </span>
 
