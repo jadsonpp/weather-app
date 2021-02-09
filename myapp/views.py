@@ -56,4 +56,3 @@ def search_history(request):
     search = paginator.get_page(page)
 
     return render(request, 'history.html', {'searches': search  } )
-
