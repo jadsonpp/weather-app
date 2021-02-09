@@ -42,11 +42,11 @@
             <span id = "previous">
                 {% if searches.has_previous %}
                     <a href="?page={{ searches.previous_page_number }}">
-                        <i class="fas fa-arrow-left"></i>
+                      <i class="fas fa-arrow-left"></i>
                     </a>
                 {% endif %}
                     
-                <span  id="pages">
+                <span id="pages">
                     {{searches.number}} de {{searches.paginator.num_pages}}
                 </span>
 
